@@ -1,11 +1,14 @@
 #BUNDLE
 
 class TicTacToe
-  def initialize(board = nil)
-    @board = board || Array.new(9, " ")
+  
+  attr_accessor :board
+  
+  def initialize
+    @board = Array.new(9, " ")
   end
 
-def WIN_COMBINATIONS = [
+WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
   [6,7,8],
@@ -16,7 +19,8 @@ def WIN_COMBINATIONS = [
   [6,4,2]
 ]
 
- def display_board(board)
+ def display_board
+   board = @board
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
   puts " #{board[3]} | #{board[4]} | #{board[5]} "
@@ -24,12 +28,12 @@ def WIN_COMBINATIONS = [
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
- def move(board, location, current_player = "X")
-  board[location.to_i-1] = current_player
+ def move(location, current_player = "X")
+  @board[location.to_i-1] = current_player
 end
 
- def position_taken?(board, location)
-  board[location] != " " && board[location] != ""
+ def position_taken?(location)
+  @board[location] != " " && board[location] != ""
 end
 
  def valid_move?(board, position)
